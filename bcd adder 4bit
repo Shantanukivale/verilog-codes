@@ -1,0 +1,16 @@
+module bcd_adder_4bit(input [3:0] a_bcd,[3:0] b_bcd,input cin,output [3:0] sum_bcd,output cout_bcd);
+wire [3:0] sum_rca1;
+wire cout_rca1;
+wire a1,a2;
+wire or1;
+wire [3:0] b_rca2;
+ripple_carry_adder_4bit rca1(a_bcd,b_bcd,cin,sum_rca1,cout_rca1);
+and an1(a1,sum_rca1[3],sum_rca1[2]);
+and an2(a2,sum_rca1[3],sum_rca1[1]);
+or (or1,a1,a2);
+assign b_rca2[0]=0;
+assign b_rca2[1]=or1;
+assign b_rca2[2]=or1;
+assign b_rca2[3]=0;
+ripple_carry_adder_4bit rca2(sum_rca1,b_rca2,0,sum_bcd,cout_bcd);
+endmodule
