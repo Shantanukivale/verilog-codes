@@ -1,0 +1,6 @@
+module fulladder_usinghalf(input fa_a,fa_b,fa_cin,output fa_sum,fa_carry);
+wire w1,w2,w3;
+half_adder ha1(.a(fa_a),.b(fa_b),.sum(w1),.carry(w2));
+half_adder ha2(.a(w1),.b(fa_cin),.sum(fa_sum),.carry(w3));
+or o1(fa_carry,w3,w2);
+endmodule
