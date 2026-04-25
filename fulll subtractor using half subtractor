@@ -1,0 +1,6 @@
+module fullsubtractor_using_halfsubtractor(input fs_a,fs_b,fs_bin,output fs_diff,fs_borrow);
+wire w1,w2,w3;
+half_subtractor hs1(.a(fs_a),.b(fs_b),.diff(w1),.borrow(w3));
+half_subtractor hs2(.a(w1),.b(fs_bin),.diff(fs_diff),.borrow(w2));
+or (fs_borrow,w2,w3);
+endmodule
